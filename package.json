@@ -17,6 +17,7 @@
 		"axios": "^1.7.2",
 		"element-plus": "^2.7.6",
 		"nprogress": "^0.2.0",
+		"path-browserify": "^1.0.1",
 		"path-to-regexp": "^7.0.0",
 		"vue": "^3.4.29",
 		"vue-router": "^4.0.13",
