@@ -14,7 +14,7 @@ service.interceptors.request.use(
 		// 请求头添加token
 		const accessToken = localStorage.getItem("TOKEN_KEY");
 		if (accessToken) {
-			config.headers.Authorization = accessToken;
+			config.headers.accessToken = accessToken;
 		}
 		return config;
 	},
@@ -34,37 +34,29 @@ service.interceptors.response.use(
 			return response;
 		}
 
-		const { code, data, msg } = response.data;
+		const { resultStatus, errorMessage, code, data } = response.data;
 		// 响应成功
-		if (code === "00000") {
+		if (resultStatus) {
 			return response.data;
-		}
-		// 响应失败
-		ElMessage.error(msg || "系统出错");
-		return Promise.reject(new Error(msg || "Error"));
-	},
-	(error : any) => {
-		// 异常处理
-		if (error.response.data) {
-			const { code, msg } = error.response.data;
-			// token过期处理
-			if (code === "A0230") {
-				ElNotification({
-					title: "提示",
-					message: "您的会话已过期，请重新登录",
-					type: "info",
-				});
+		} else {
+			if (code === "50001") {
+				ElMessage.warning("您的会话已过期，请重新登录");
 				// token过期，清除token缓存，退出登录，清空路由
 				setTimeout(function() {
 					resetToken().then(() => {
 					  location.reload();
 					});
-				}, 2000);
-			} else {
-				ElMessage.error(msg || "系统出错");
+				}, 1000);
+			} else{
+				ElMessage.error(errorMessage || "系统出错");
 			}
+			// 响应失败
+			return Promise.reject(new Error(errorMessage || "Error"));
 		}
+	},
+	(error : any) => {
 		// 响应失败，抛出错误信息
+		ElMessage.error(error.message || "系统出错");
 		return Promise.reject(error);
 	}
 );

@@ -8,8 +8,8 @@ export default createStore({
 		routerMenu: [],
 
 		layout: localStorage.getItem("layout") || 'left',
-		showTagsView: localStorage.getItem("showTagsView") || true,
-		fixedHeader: localStorage.getItem("fixedHeader") || true,
+		showTagsView: localStorage.getItem("showTagsView") && localStorage.getItem("showTagsView") == 'false' ? false : true,
+		fixedHeader: localStorage.getItem("fixedHeader") && localStorage.getItem("fixedHeader") == 'false' ? false : true,
 		sidebarStatus: localStorage.getItem("sidebarStatus") || 'opened',
 		theme: localStorage.getItem("theme") || 'light',
 		activeTopMenuPath: localStorage.getItem("activeTopMenuPath") || '',
@@ -70,9 +70,8 @@ export default createStore({
 			return new Promise((resolve, reject) => {
 				try {
 					getUserInfoApi().then(res => {
-						const info = res.data;
-						commit('setUserInfo', info);
-						resolve(info);
+						commit('setUserInfo', res.data);
+						resolve(res.data);
 					}).catch(err => {
 						reject(err);
 					})
@@ -85,54 +84,11 @@ export default createStore({
 		getMenuList({ commit }) {
 			return new Promise((resolve, reject) => {
 				try {
-					getMenuListApi().then(res => {
-						const menu = [
-							// {
-							// 	path: '/dashboard',
-							// 	meta: {
-							// 		title: '首页',
-							// 		hidden: false,
-							// 		icon: 'house'
-							// 	},
-							// 	id: 1,
-							// 	pid: 0
-							// },
-							{
-								path: '/system',
-								meta: {
-									title: "系统管理",
-									hidden: false,
-									icon: 'monitor'
-								},
-								id: 2,
-								pid: 0,
-								children: [
-									{
-										path: '/system/user',
-										meta: {
-											title: '用户管理',
-											hidden: false,
-											icon: 'user'
-										},
-										id: 3,
-										pid: 2
-									},
-									{
-										path: '/system/role',
-										meta: {
-											title: '角色管理',
-											hidden: false,
-											icon: 'avatar'
-										},
-										id: 4,
-										pid: 2
-									}
-								]
-							}
-						];
-						console.log(menu);
-						commit('setMenuList', menu);
-						resolve(menu);
+					getMenuListApi({
+						code: 'YYGLXT'
+					}).then(res => {
+						commit('setMenuList', res.data);
+						resolve(res.data);
 					}).catch(err => {
 						reject(err);
 					})

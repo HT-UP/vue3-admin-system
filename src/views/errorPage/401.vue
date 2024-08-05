@@ -1,7 +1,7 @@
 <template>
-	<div class="page-container">
+	<div class="content-container">
 		<div class="img">
-			<img src="https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg">
+			<img src="@/assets/images/401.svg">
 		</div>
 		<div class="content">
 			<h1>401</h1>
@@ -36,7 +36,7 @@
 </script>
 
 <style lang="scss" scoped>
-	.page-container {
+	.content-container {
 		width: 100%;
 		height: 100%;
 		padding: 100px;

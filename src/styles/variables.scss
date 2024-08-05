@@ -1,11 +1,16 @@
 /** 全局SCSS变量 */
-
 :root {
   --menu-background: #304156;
   --menu-text: #bfcbd9;
   --menu-active-text: var(--el-menu-active-color);
   --menu-hover: #263445;
   --sidebar-logo-background: #2d3748;
+  
+  --el-color-primary: #1890ff;
+  --el-color-success: #13ce66;
+  --el-color-warning: #ffba00;
+  --el-color-danger: #ff4949;
+  --el-color-info: #999;
 
   // 修复表格 fixed 列被选中后由于透明色导致叠字的 bug
   .el-table {

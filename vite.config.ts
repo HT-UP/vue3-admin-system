@@ -8,6 +8,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import UnoCSS from "unocss/vite"
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode } : ConfigEnv) : UserConfig => {
@@ -38,17 +39,24 @@ export default defineConfig(({ mode } : ConfigEnv) : UserConfig => {
 			open: false,
 			proxy: {
 				/** 代理前缀为 /api 的请求  */
-				'/api': {
-					target: 'http://vapi.youlai.tech', // 指定要代理的目标地址
+				'/api/zxc': {
+					// target: 'http://vapi.youlai.tech', // 指定要代理的目标地址
+					target: 'http://192.168.3.33:8080', // 章学铖
 					changeOrigin: true, // 是否改变请求的来源
-					rewrite: (path) => path.replace(/^\/api/, ''), // 可选的路径重写规则
+					rewrite: (path) => path.replace(/\/api\/zxc/g, ''), // 可选的路径重写规则
+				},
+				'/api/xy': {
+					// target: 'http://vapi.youlai.tech', // 指定要代理的目标地址
+					target: 'http://192.168.3.17:3211', // 谢颖
+					changeOrigin: true, // 是否改变请求的来源
+					rewrite: (path) => path.replace(/\/api\/xy/g, ''), // 可选的路径重写规则
 				},
 			},
 		},
 		plugins: [
 			vue(),
 			UnoCSS({
-			  hmrTopLevelAwait: false,
+				hmrTopLevelAwait: false,
 			}),
 			AutoImport({
 				// 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
@@ -80,6 +88,12 @@ export default defineConfig(({ mode } : ConfigEnv) : UserConfig => {
 			Icons({
 				// 自动安装图标库
 				autoInstall: true,
+			}),
+			createSvgIconsPlugin({
+				// 指定需要缓存的图标文件夹
+				iconDirs: [resolve(pathSrc, "assets/icons")],
+				// 指定symbolId格式
+				symbolId: "icon-[dir]-[name]",
 			}),
 		],
 		//****这里进行设置文件名****

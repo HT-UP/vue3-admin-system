@@ -3,15 +3,11 @@
 	<el-icon v-if="icon && icon.startsWith('el-icon')" class="sub-el-icon">
 		<component :is="icon.replace('el-icon-', '')" />
 	</el-icon>
-	
-	<el-icon v-else-if="icon" class="sub-el-icon">
-		<component :is="icon" />
-	</el-icon>
-	
-	<el-icon v-else class="sub-el-icon">
-		<Menu></Menu>
-	</el-icon>
-	
+
+	<svg-icon v-else-if="icon" :icon-class="icon" />
+
+	<svg-icon v-else icon-class="menu" />
+
 	<!-- 菜单标题 -->
 	<span v-if="title" class="ml-1">{{ title }}</span>
 </template>

@@ -23,7 +23,7 @@ export const constantRoutes : RouteRecordRaw[] = [
 		path: "/login",
 		name: 'Login',
 		component: () => import("@/views/login/index.vue"),
-		meta: { hidden: true },
+		meta: { hidden: true }
 	},
 	
 	//独立菜单页面必须写在这里面
@@ -42,6 +42,16 @@ export const constantRoutes : RouteRecordRaw[] = [
 	    		keepAlive: true
 	    	},
 	    },
+		{
+			path: "/profile",
+			name: "Profile",
+			component: () => import("@/views/profile/index.vue"),
+			meta: {
+				title: "个人中心",
+				keepAlive: true,
+				hidden: true
+			},
+		}
 	  ],
 	},
 
@@ -54,11 +64,11 @@ export const constantRoutes : RouteRecordRaw[] = [
 		},
 		children: [
 			{
-				path: '/system/user',
-				name: 'User',
-				component: () => import('@/views/system/user/index.vue'),
+				path: '/system/department',
+				name: 'Department',
+				component: () => import('@/views/system/department/index.vue'),
 				meta: {
-					title: '用户管理',
+					title: '部门管理',
 					keepAlive: true
 				}
 			},
@@ -70,6 +80,33 @@ export const constantRoutes : RouteRecordRaw[] = [
 					title: '角色管理',
 					keepAlive: true
 				}
+			},
+			{
+				path: '/system/user',
+				name: 'User',
+				component: () => import('@/views/system/user/index.vue'),
+				meta: {
+					title: '员工管理',
+					keepAlive: true
+				}
+			},
+			{
+				path: '/system/menu',
+				name: 'Permission',
+				component: () => import('@/views/system/menu/index.vue'),
+				meta: {
+					title: '菜单管理',
+					keepAlive: true
+				}
+			},
+			{
+				path: '/system/dictionary',
+				name: 'Dictionary',
+				component: () => import('@/views/system/dictionary/index.vue'),
+				meta: {
+					title: '字典管理',
+					keepAlive: true
+				}
 			}
 		]
 	},
@@ -78,13 +115,13 @@ export const constantRoutes : RouteRecordRaw[] = [
 		path: "/401",
 		name: '401',
 		component: () => import("@/views/errorPage/401.vue"),
-		meta: { hidden: true },
+		meta: { hidden: true }
 	},
 	{
 		path: "/404",
 		name: '404',
 		component: () => import("@/views/errorPage/404.vue"),
-		meta: { hidden: true },
+		meta: { hidden: true }
 	},
 ]
 
@@ -135,7 +172,7 @@ router.beforeEach(async (to, from, next) => {
 						if (to.matched.length === 0) {
 							next("/404");
 						} else {
-							if (getPathList(store.state.routerMenu).includes(to.path)) {
+							if (getPathList(store.state.routerMenu).includes(to.path) || to.path == '/profile') {
 								next();
 								NProgress.done();
 							} else {
@@ -165,7 +202,7 @@ router.beforeEach(async (to, from, next) => {
 				if (to.matched.length === 0) {
 					next("/404");
 				} else {
-					if (getPathList(store.state.routerMenu).includes(to.path)) {
+					if (getPathList(store.state.routerMenu).includes(to.path) || to.path == '/profile') {
 						next();
 						NProgress.done();
 					} else {

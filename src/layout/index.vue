@@ -4,20 +4,23 @@
 		<div v-if="isMobile && isOpenSidebar" class="wh-full fixed-lt z-999 bg-black bg-opacity-30"
 			@click="handleOutsideClick">
 		</div>
-		
+
 		<!-- 公用侧边栏 -->
 		<Sidebar class="sidebar-container" />
-		
+
 		<!-- 左侧和顶部布局 -->
 		<div class="main-container">
-		  <div :class="{ 'fixed-header': fixedHeader }" style="box-shadow: 0 0 10px rgba(3, 3, 3, .5);">
-		    <NavBar v-if="layout === 'left'" />
-		    <TagsView v-if="showTagsView" />
-		  </div>
-		  <AppMain />
-		  <Settings  />
-		  
-		  <el-backtop target=".main-container"></el-backtop>
+			<div :class="{ 'fixed-header': fixedHeader }" style="box-shadow: 0 0 10px rgba(3, 3, 3, .5);">
+				<NavBar v-if="layout === 'left'" />
+				<TagsView v-if="showTagsView" />
+			</div>
+			<AppMain />
+			<Settings />
+
+			<!-- 返回顶部 -->
+			<el-backtop target=".main-container">
+				<svg-icon icon-class="backtop" size="24px" />
+			</el-backtop>
 		</div>
 	</div>
 </template>
@@ -29,7 +32,7 @@
 	import TagsView from './components/TagsView/index.vue';
 	import AppMain from './components/AppMain/index.vue';
 	import Settings from './components/Settings/index.vue';
-	
+
 	const store = useStore();
 	const width = useWindowSize().width;
 

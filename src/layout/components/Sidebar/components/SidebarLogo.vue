@@ -7,7 +7,7 @@
 
       <div v-else class="wh-full flex-center">
         <img :src="logo" class="logo-image" />
-        <span class="logo-title">admin-system-front</span>
+        <span class="logo-title">运营管理系统</span>
       </div>
     </transition>
   </div>

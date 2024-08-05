@@ -1,13 +1,29 @@
 import request from "@/request";
 
-//获取验证码
-export function getCaptchaImgApi() {
-	return request.get(`/api/v1/auth/captcha`);
-}
+const pre_zxc = import.meta.env.VITE_APP_PRE_ZXC
+const pre_xy = import.meta.env.VITE_APP_PRE_XY
+
 // 登录
-export function loginApi(formData) {
+export function loginApi(params) {
+	return request.post(`${pre_zxc}/api/AAA/sys/login`, params);
+}
+//获取个人信息及按钮权限
+export function getUserInfoApi() {
+	return request.post(`${pre_xy}/api/role/system/userinfo/get`);
+}
+//获取菜单
+export function getMenuListApi(params) {
+	return request.post(`${pre_xy}/api/role/system/res/menu`, params);
+}
+//退出登录
+export function loginOutApi() {
+	return request.post(`${pre_zxc}/api/AAA/sys/logout`);
+}
+
+//上传文件公共接口
+export function uploadFileApi(formData) {
 	return request({
-		url: `/api/v1/auth/login`,
+		url: `${pre_xy}/api/role/upload`,
 		method: "post",
 		data: formData,
 		headers: {
@@ -15,15 +31,13 @@ export function loginApi(formData) {
 		}
 	});
 }
-//获取个人信息及按钮权限
-export function getUserInfoApi() {
-	return request.get(`/api/v1/users/me`);
+
+//修改头像
+export function editAvatarApi(params) {
+	return request.post(`${pre_xy}/api/role/system/userinfo/edit/avatar`, params);
 }
-//获取菜单
-export function getMenuListApi() {
-	return request.get(`/api/v1/menus/routes`);
-}
-//退出登录
-export function loginOutApi() {
-	return request.delete(`/api/v1/auth/logout`);
+
+//修改密码
+export function editPasswordApi(params) {
+	return request.post(`${pre_xy}/api/role/system/userinfo/edit/passwd`, params);
 }

@@ -1,8 +1,8 @@
 <template>
-	<div class="page-container">
+	<div class="content-container">
 		<div class="mars"></div>
-		<img src="@/assets/icons/404.svg" class="logo-404">
-		<img src="@/assets/icons/meteor.svg" class="meteor">
+		<img src="@/assets/images/404.svg" class="logo-404">
+		<img src="@/assets/images/meteor.svg" class="meteor">
 		<p class="title">Oh no!!!</p>
 		<p class="subtitle">
 			页面不存在<br>请检查您输入的网址是否正确，或者点击下面的按钮返回上一页。
@@ -10,8 +10,8 @@
 		<div class="text-center">
 			<a class="btn-back" @click="back">返回上一页</a>
 		</div>
-		<img src="@/assets/icons/astronaut.svg" class="astronaut">
-		<img src="@/assets/icons/spaceship.svg" class="spaceship">
+		<img src="@/assets/images/astronaut.svg" class="astronaut">
+		<img src="@/assets/images/spaceship.svg" class="spaceship">
 	</div>
 </template>
 
@@ -42,8 +42,8 @@
 		}
 	}
 
-	.page-container {
-		background-image: url("@/assets/icons/star.svg"), linear-gradient(to bottom, #05007A, #4D007D);
+	.content-container {
+		background-image: url("@/assets/images/star.svg"), linear-gradient(to bottom, #05007A, #4D007D);
 		height: 100vh;
 		margin: 0;
 		background-attachment: fixed;
@@ -56,7 +56,7 @@
 		bottom: 0;
 		position: absolute;
 		height: 27vmin;
-		background: url("@/assets/icons/mars.svg") no-repeat bottom center;
+		background: url("@/assets/images/mars.svg") no-repeat bottom center;
 		background-size: cover;
 	}
 

@@ -3,20 +3,21 @@
 		<template v-if="!isMobile">
 			<!--全屏 -->
 			<div class="setting-item" @click="toggle">
-				<i-ep-FullScreen v-if="!isFullscreen" style="font-size: 14px;" />
-				<i-ep-CopyDocument v-else  style="font-size: 14px;" />
+				<svg-icon v-if="!isFullscreen" icon-class="fullscreen" />
+				<svg-icon v-else icon-class="fullscreen-exit" />
 			</div>
 		</template>
 
 		<!-- 用户头像 -->
 		<el-dropdown class="setting-item" trigger="click">
 			<div class="flex-center h100% p10px">
-				<img :src="$store.state.userInfo.avatar + '?imageView2/1/w/80/h/80'" class="rounded-full mr-10px w24px w24px" />
-				<span>{{ $store.state.userInfo.username }}</span>
+				<img :src="$store.state.userInfo.userAvatar + '?imageView2/1/w/80/h/80'" class="rounded-full mr-10px w24px w24px" />
+				<span>{{ $store.state.userInfo.userAccount }}</span>
 			</div>
 			<template #dropdown>
 				<el-dropdown-menu>
-					<el-dropdown-item @click="setHandle">系统设置</el-dropdown-item>
+					<el-dropdown-item @click="profileHandle">个人中心</el-dropdown-item>
+					<el-dropdown-item divided @click="setHandle">系统设置</el-dropdown-item>
 					<el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
 				</el-dropdown-menu>
 			</template>
@@ -33,7 +34,9 @@
 	const isMobile = computed(() => store.state.device === 'mobile');
 
 	const { isFullscreen, toggle } = useFullscreen();
-	
+	const profileHandle = () => {
+		router.push('/profile');
+	}
 	const setHandle = () => {
 		store.commit("openSettingsDrawer");
 	}
