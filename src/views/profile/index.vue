@@ -8,7 +8,7 @@
 					</div>
 				</template>
 				<div>
-					<div class="text-center">
+					<div class="text-center user-info">
 						<div class="user-info-head" @click="editCropper">
 							<img :src="$store.state.userInfo.userAvatar" class="img-circle img-lg" />
 						</div>
@@ -117,16 +117,22 @@
 				}
 			}
 		}
-
-		.user-info-head {
-			position: relative;
-			display: inline-block;
-
-			.img-circle {
+		
+		.user-info {
+			height: 120px;
+			
+			.user-info-head {
+				position: relative;
+				display: inline-block;
 				width: 120px;
 				height: 120px;
-				border-radius: 100%;
-				object-fit: contain;
+			
+				.img-circle {
+					width: 100%;
+					height: 100%;
+					border-radius: 100%;
+					object-fit: contain;
+				}
 			}
 		}
 
@@ -136,7 +142,7 @@
 			left: 0;
 			right: 0;
 			top: 0;
-			bottom: 6px;
+			bottom: 0;
 			color: #eee;
 			background: rgba(0, 0, 0, 0.5);
 			font-size: 24px;
