@@ -96,7 +96,9 @@
 		proxy.$refs.cropper.changeScale(num);
 	}
 	/** 覆盖默认上传行为 */
-	const requestUpload = () => { }
+	const requestUpload = () => { 
+		
+	}
 	/** 上传预处理 */
 	const beforeUpload = (file) => {
 		if (file.type.indexOf("image/") == -1) {

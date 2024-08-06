@@ -1,6 +1,6 @@
 <template>
-	<div class="page-container" :style="{ height: minHeight }">
-		<div class="wh-full white-bg">
+	<div class="page-container">
+		<div class="wh-full white-bg" :style="{ minHeight: minHeight }">
 			<el-card class="box-card">
 				<template v-slot:header>
 					<div class="clearfix">
@@ -65,16 +65,12 @@
 	import variables from "@/styles/variables.module.scss";
 	import AvatarDialog from "./components/AvatarDialog.vue";
 	import PasswordDialog from "./components/PasswordDialog.vue";
-
+	
 	const store = useStore();
-
 	const minHeight = computed(() => {
-		if (store.state.tagsView) {
-			return `calc(100vh - ${variables["navbar-height"]} - ${variables["tags-view-height"]})`;
-		} else {
-			return `calc(100vh - ${variables["navbar-height"]})`;
-		}
+		return store.state.showTagsView ? `calc(100vh - ${variables["navbar-height"]} - ${variables["tags-view-height"]} - 20px)` : `calc(100vh - ${variables["navbar-height"]} - 20px)`;
 	});
+
 	const formatDept = (arr) => {
 		let deptList = arr.map(i => i.deptName);
 		return deptList.join('/');
@@ -97,11 +93,10 @@
 	.page-container {
 		.white-bg {
 			background-color: var(--el-bg-color-overlay);
-			padding-top: 50px;
-			min-height: 500px;
+			padding: 50px 0;
 
 			.el-card {
-				min-width: 300px;
+				min-width: 330px;
 				width: 24%;
 				margin: 0 auto;
 
@@ -116,7 +111,7 @@
 						font-size: 13px;
 						
 						.pull-right {
-							max-width: 160px;
+							max-width: 60%;
 						}
 					}
 				}

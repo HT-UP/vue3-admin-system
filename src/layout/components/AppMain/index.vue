@@ -19,11 +19,7 @@
 
 	const cachedViews = computed(() => store.state.tagsView.cachedViews); // 缓存页面集合
 	const minHeight = computed(() => {
-		if (store.state.tagsView) {
-			return `calc(100vh - ${variables["navbar-height"]} - ${variables["tags-view-height"]})`;
-		} else {
-			return `calc(100vh - ${variables["navbar-height"]})`;
-		}
+		return store.state.showTagsView ? `calc(100vh - ${variables["navbar-height"]} - ${variables["tags-view-height"]})` : `calc(100vh - ${variables["navbar-height"]})`;
 	});
 </script>
 
