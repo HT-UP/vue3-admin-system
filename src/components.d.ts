@@ -76,6 +76,7 @@ declare module 'vue' {
     IEpSearch: typeof import('~icons/ep/search')['default']
     IEpSuccessFilled: typeof import('~icons/ep/success-filled')['default']
     IEpSwitch: typeof import('~icons/ep/switch')['default']
+    IEpTickets: typeof import('~icons/ep/tickets')['default']
     IEpUpload: typeof import('~icons/ep/upload')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
     IEpWarningFilled: typeof import('~icons/ep/warning-filled')['default']

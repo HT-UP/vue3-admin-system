@@ -25,7 +25,7 @@
 			<el-card shadow="never">
 				<template #header>
 					<div class="card-header">
-						<el-button type="success" @click="addHandle"><i-ep-plus />新增</el-button>
+						<el-button v-permission="'system_user_add'" type="success" @click="addHandle"><i-ep-plus />新增</el-button>
 					</div>
 				</template>
 

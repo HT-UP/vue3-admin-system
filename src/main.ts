@@ -4,6 +4,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from "@/router"
 import store from "@/store"
+import directive from './directive'
 
 // 本地SVG图标
 import "virtual:svg-icons-register";
@@ -22,4 +23,5 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(ElementPlus, { size: 'default', zIndex: 3000 })
 app.use(router)
 app.use(store)
+directive(app)
 app.mount("#app")

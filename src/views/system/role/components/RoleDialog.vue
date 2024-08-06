@@ -178,10 +178,9 @@
 			await getMenuList();
 			menuNodeAll.value = false;
 			nextTick(() => {
+				handleCheckedTreeNodeAll(false);
 				formData.value.roleResourceIds.forEach((v) => {
-					nextTick(() => {
-						menuRef.value.setChecked(v, true, false);
-					});
+					menuRef.value.setChecked(v, true, false);
 				});
 			})
 		} catch (e) {

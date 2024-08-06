@@ -34,7 +34,7 @@
 
 				<el-table ref="tableRef" :data="tableList" highlight-current-row border v-loading="tableLoading">
 					<el-table-column label="角色名称" prop="roleName" min-width="120" show-overflow-tooltip />
-					<el-table-column label="角色类型" align="center" width="150">
+					<el-table-column label="角色类型" min-width="120">
 						<template #default="{ row }">
 							<el-tag v-if="row.roleType === 0" type="success">系统角色</el-tag>
 							<el-tag v-if="row.roleType === 1" type="warning">用户角色</el-tag>
@@ -49,7 +49,7 @@
 					</el-table-column>
 					<el-table-column label="创建时间" prop="createTime" width="160" show-overflow-tooltip />
 
-					<el-table-column fixed="right" label="操作" width="220">
+					<el-table-column fixed="right" label="操作" width="180">
 						<template #default="{ row }">
 							<el-button type="primary" link size="small"
 								@click="editHandle(row.id)"><i-ep-edit />编辑</el-button>
